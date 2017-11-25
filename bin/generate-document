@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+const console = require('console');
+const {DocumentGenerator} = require('..');
+const packageJSON = require('../package.json');
+
+const args = process.argv.slice(2);
+
+const help = args.find((arg) => {
+	return (/^-*h(?:elp)?$/i).test(arg);
+}) && `
+Usage: generate-document <filepath>
+`;
+
+const version = args.find((arg) => {
+	return (/^-*v(?:ersion)?$/i).test(arg);
+}) && packageJSON.version;
+
+if (help) {
+	console.log(help);
+} else if (version) {
+	console.log(version);
+} else {
+	new DocumentGenerator(args[args.length - 1])
+	.start()
+	.catch((error) => {
+		console.error(error);
+		process.exit(1);
+	});
+}

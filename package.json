@@ -1,0 +1,31 @@
+{
+  "name": "generate-document",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.1",
+  "description": "Generates documents from package.json",
+  "author": {
+    "name": "Kei Ito",
+    "email": "kei.itof@gmail.com",
+    "url": "https://github.com/kei-ito"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=6"
+  },
+  "repository": "kei-ito/generate-document",
+  "main": "lib/index.js",
+  "scripts": {
+    "eslint": "eslint --max-warnings 0 'lib/**/*.js' 'test/**/*.js'",
+    "test": "node test && npm run eslint"
+  },
+  "devDependencies": {
+    "@nlib/lint": "0.0.6",
+    "@nlib/test": "^1.0.2"
+  },
+  "dependencies": {
+    "@nlib/promisify": "^1.0.0",
+    "acorn": "^5.2.1"
+  }
+}
