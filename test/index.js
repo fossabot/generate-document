@@ -1,2 +1,2 @@
 require('./tokenize-comment');
-require('./walk');
+require('./is-import');
