@@ -75,6 +75,11 @@ test('tokenizeComment', (test) => {
 				'* foo bar',
 				' * @baz {foo} baz bar',
 				' * @baz {foo|bar.<baz>} [baz] - bar',
+				' * @baz {foo} - baz bar',
+				' * @baz {foo|bar.<baz>} [baz] - bar',
+				' * - foo',
+				' * - bar',
+				' * *baz*',
 			].join('\n'),
 			{text: 'foo\nbar'},
 			{type: 'foo', text: 'bar'},
@@ -82,10 +87,12 @@ test('tokenizeComment', (test) => {
 			{type: '☺️', text: '🎵\nfoo bar'},
 			{type: 'baz', text: 'bar', param: {type: 'foo', name: 'baz'}},
 			{type: 'baz', text: 'bar', param: {type: 'foo|bar.<baz>', name: '[baz]'}},
+			{type: 'baz', text: 'baz bar', param: {type: 'foo', name: ''}},
+			{type: 'baz', text: 'bar\n- foo\n- bar\n*baz*', param: {type: 'foo|bar.<baz>', name: '[baz]'}},
 		],
 	]
 	.forEach(([comment, ...expectedTokens]) => {
-		test(JSON.stringify(comment), (test) => {
+		test(comment, (test) => {
 			tokenizeComment(comment)
 			.forEach((token, index) => {
 				test(JSON.stringify(token), () => {
