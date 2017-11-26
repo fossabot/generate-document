@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "sort-keys": "warn",
+    "no-empty-function": "off"
+  }
+}
