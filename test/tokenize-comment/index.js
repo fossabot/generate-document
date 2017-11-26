@@ -77,6 +77,7 @@ test('tokenizeComment', (test) => {
 				' * @baz {foo|bar.<baz>} [baz] - bar',
 				' * @baz {foo} - baz bar',
 				' * @baz {foo|bar.<baz>} [baz] - bar',
+				' *',
 				' * - foo',
 				' * - bar',
 				' * *baz*',
@@ -88,7 +89,7 @@ test('tokenizeComment', (test) => {
 			{type: 'baz', text: 'bar', param: {type: 'foo', name: 'baz'}},
 			{type: 'baz', text: 'bar', param: {type: 'foo|bar.<baz>', name: '[baz]'}},
 			{type: 'baz', text: 'baz bar', param: {type: 'foo', name: ''}},
-			{type: 'baz', text: 'bar\n- foo\n- bar\n*baz*', param: {type: 'foo|bar.<baz>', name: '[baz]'}},
+			{type: 'baz', text: 'bar\n\n- foo\n- bar\n*baz*', param: {type: 'foo|bar.<baz>', name: '[baz]'}},
 		],
 	]
 	.forEach(([comment, ...expectedTokens]) => {
